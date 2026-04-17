@@ -7,6 +7,9 @@ Targets core dyslexia journals and covers major reading science topics.
 import json
 import sys
 import argparse
+import glob
+import os
+import re
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone, timedelta
 from urllib.request import urlopen, Request
@@ -53,6 +56,35 @@ TOPICS = [
 ]
 
 HEADERS = {"User-Agent": "DyslexiaBrainBot/1.0 (research aggregator)"}
+
+PUBMED_URL_RE = re.compile(r"pubmed\.ncbi\.nlm\.nih\.gov/(\d+)")
+
+
+def get_existing_pmids(days: int = 7) -> set[str]:
+    tz_taipei = timezone(timedelta(hours=8))
+    today = datetime.now(tz_taipei).date()
+    pmids = set()
+    for f in sorted(glob.glob("docs/dyslexia-*.html"), reverse=True):
+        basename = os.path.basename(f)
+        date_str = basename.replace("dyslexia-", "").replace(".html", "")
+        try:
+            file_date = datetime.strptime(date_str, "%Y-%m-%d").date()
+        except ValueError:
+            continue
+        if (today - file_date).days > days:
+            break
+        try:
+            with open(f, "r", encoding="utf-8") as fh:
+                html = fh.read()
+            for m in PUBMED_URL_RE.finditer(html):
+                pmids.add(m.group(1))
+        except Exception:
+            continue
+    print(
+        f"[INFO] Found {len(pmids)} existing PMIDs from last {days} days",
+        file=sys.stderr,
+    )
+    return pmids
 
 
 def build_query(days: int = 7, max_journals: int = 15) -> str:
@@ -202,6 +234,10 @@ def main():
                 )
             )
         return
+
+    existing = get_existing_pmids(days=7)
+    pmids = [p for p in pmids if p not in existing]
+    print(f"[INFO] After dedup: {len(pmids)} new papers", file=sys.stderr)
 
     papers = fetch_details(pmids)
     print(f"[INFO] Fetched details for {len(papers)} papers", file=sys.stderr)
