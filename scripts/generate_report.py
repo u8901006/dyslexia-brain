@@ -16,7 +16,7 @@ import httpx
 API_BASE = os.environ.get(
     "ZHIPU_API_BASE", "https://open.bigmodel.cn/api/coding/paas/v4"
 )
-MODEL_NAME = os.environ.get("ZHIPU_MODEL", "zhipu-coding-plan/glm-5.1")
+MODEL_NAME = os.environ.get("ZHIPU_MODEL", "glm-4-plus")
 
 SYSTEM_PROMPT = (
     "你是閱讀障礙（dyslexia）與學習科學領域的資深研究員與科學傳播者。你的任務是：\n"
@@ -292,6 +292,8 @@ def generate_html(analysis: dict) -> str:
     topic_bars_html = ""
     if topic_dist:
         max_count = max(topic_dist.values()) if topic_dist else 1
+        if max_count == 0:
+            max_count = 1
         for topic, count in topic_dist.items():
             width_pct = int((count / max_count) * 100)
             topic_bars_html += f"""
