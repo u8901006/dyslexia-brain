@@ -15,7 +15,7 @@ import httpx
 
 API_BASE = "https://integrate.api.nvidia.com/v1"
 MODEL_NAME = "nvidia/nemotron-3-super-120b-a12b"
-FALLBACK_MODEL = "nvidia/nemotron-3-nano-30b-a3b"
+FALLBACK_MODEL = "nvidia/nemotron-3.5-lightning-30b-a3b"
 
 SYSTEM_PROMPT = (
     "你是閱讀障礙（dyslexia）與學習科學領域的資深研究員與科學傳播者。你的任務是：\n"
@@ -170,6 +170,7 @@ def analyze_papers(api_key: str, papers_data: dict) -> dict:
                     f"[INFO] Analysis complete: {len(result.get('top_picks', []))} top picks, {len(result.get('all_papers', []))} total",
                     file=sys.stderr,
                 )
+                result["model_used"] = model
                 return result
 
             except json.JSONDecodeError as e:
@@ -182,6 +183,7 @@ def analyze_papers(api_key: str, papers_data: dict) -> dict:
                         text = repair_json(text)
                         result = json.loads(text)
                         print(f"[INFO] JSON repaired successfully", file=sys.stderr)
+                        result["model_used"] = model
                         return result
                     except Exception:
                         pass
@@ -429,7 +431,7 @@ def generate_html(analysis: dict) -> str:
   </div>
 
   <footer>
-    <span>\u8cc7\u6599\u4f86\u6e90\uff1aPubMed &middot; \u5206\u6790\u6a21\u578b\uff1a{MODEL_NAME}</span>
+    <span>\u8cc7\u6599\u4f86\u6e90\uff1aPubMed &middot; \u5206\u6790\u6a21\u578b\uff1a{analysis.get("model_used", "未使用 AI（無新文獻）")}</span>
     <span><a href="https://github.com/u8901006/dyslexia-brain">GitHub</a></span>
   </footer>
 </div>
