@@ -1,9 +1,6 @@
 name: Dyslexia Daily Report
 
 on:
-  push:
-    branches: ["main"]
-    paths: [".github/workflows/daily-report.yml"]
   schedule:
     - cron: "0 5 * * *" # UTC 05:00 = 台北時間 13:00
   workflow_dispatch:
