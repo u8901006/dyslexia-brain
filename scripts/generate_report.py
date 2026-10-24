@@ -458,6 +458,9 @@ def main():
         sys.exit(1)
 
     papers_data = load_papers(args.input)
+    if not (papers_data or {}).get("papers") and os.path.exists(args.output):
+        print("[INFO] No new papers; preserving existing report", file=sys.stderr)
+        return
     if not papers_data or not papers_data.get("papers"):
         print("[WARN] No papers found, generating empty report", file=sys.stderr)
         tz_taipei = timezone(timedelta(hours=8))
