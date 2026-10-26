@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Dyslexia Brain &middot; 閱讀障礙文獻日報 &middot; 2026年10月26日</title>
+<meta name="description" content="2026年10月26日 閱讀障礙文獻日報，由 AI 自動彙整 PubMed 最新論文"/>
+<style>
+  :root { --bg: #f0f4f8; --surface: #ffffff; --line: #d1dbe6; --text: #1a2a3a; --muted: #5a6d7e; --accent: #2b7a9e; --accent-soft: #d4eaf5; --accent-dark: #1a5c78; --card-bg: rgba(255,255,255,0.92); }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: linear-gradient(135deg, #e8f0f8 0%, #f0f4f8 40%, #f5f0eb 100%); color: var(--text); font-family: "Noto Sans TC", "PingFang TC", "Helvetica Neue", Arial, sans-serif; min-height: 100vh; overflow-x: hidden; }
+  .container { position: relative; z-index: 1; max-width: 880px; margin: 0 auto; padding: 60px 32px 80px; }
+  header { display: flex; align-items: center; gap: 16px; margin-bottom: 52px; animation: fadeDown 0.6s ease both; }
+  .logo { width: 48px; height: 48px; border-radius: 14px; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; box-shadow: 0 4px 20px rgba(43,122,158,0.25); }
+  .header-text h1 { font-size: 22px; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+  .header-meta { display: flex; gap: 8px; margin-top: 6px; flex-wrap: wrap; align-items: center; }
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; letter-spacing: 0.3px; }
+  .badge-date { background: var(--accent-soft); border: 1px solid var(--line); color: var(--accent); }
+  .badge-count { background: rgba(43,122,158,0.06); border: 1px solid var(--line); color: var(--muted); }
+  .badge-source { background: transparent; color: var(--muted); font-size: 11px; padding: 0 4px; }
+  .summary-card { background: var(--card-bg); border: 1px solid var(--line); border-radius: 24px; padding: 28px 32px; margin-bottom: 32px; box-shadow: 0 20px 60px rgba(26,42,58,0.06); animation: fadeUp 0.5s ease 0.1s both; }
+  .summary-card h2 { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.6px; color: var(--accent); margin-bottom: 16px; }
+  .summary-text { font-size: 15px; line-height: 1.8; color: var(--text); }
+  .section { margin-bottom: 36px; animation: fadeUp 0.5s ease both; }
+  .section-title { display: flex; align-items: center; gap: 10px; font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+  .section-icon { width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; background: var(--accent-soft); }
+  .news-card { background: var(--card-bg); border: 1px solid var(--line); border-radius: 24px; padding: 22px 26px; margin-bottom: 12px; box-shadow: 0 8px 30px rgba(26,42,58,0.04); transition: background 0.2s, border-color 0.2s, transform 0.2s; }
+  .news-card:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(26,42,58,0.08); }
+  .news-card.featured { border-left: 3px solid var(--accent); }
+  .news-card.featured:hover { border-color: var(--accent); }
+  .card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .rank-badge { background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: #fff; font-weight: 700; font-size: 12px; padding: 2px 8px; border-radius: 6px; }
+  .emoji-icon { font-size: 18px; }
+  .card-header-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .emoji-sm { font-size: 14px; }
+  .news-card h3 { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 8px; line-height: 1.5; }
+  .journal-source { font-size: 12px; color: var(--accent); margin-bottom: 8px; opacity: 0.8; }
+  .news-card p { font-size: 13.5px; line-height: 1.75; color: var(--muted); }
+  .card-footer { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+  .tag { padding: 2px 9px; background: var(--accent-soft); border-radius: 999px; font-size: 11px; color: var(--accent); }
+  .news-card a { font-size: 12px; color: var(--accent); text-decoration: none; opacity: 0.7; margin-left: auto; }
+  .news-card a:hover { opacity: 1; }
+  .utility-high { color: #2a7a3a; font-size: 11px; font-weight: 600; padding: 2px 8px; background: rgba(42,122,58,0.1); border-radius: 4px; }
+  .utility-mid { color: #8a6a1e; font-size: 11px; font-weight: 600; padding: 2px 8px; background: rgba(138,106,30,0.1); border-radius: 4px; }
+  .utility-low { color: var(--muted); font-size: 11px; font-weight: 600; padding: 2px 8px; background: rgba(90,109,126,0.08); border-radius: 4px; }
+  .utility-sm { font-size: 10px; }
+  .pico-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; padding: 12px; background: rgba(240,244,248,0.8); border-radius: 14px; border: 1px solid var(--line); }
+  .pico-item { display: flex; gap: 8px; align-items: baseline; }
+  .pico-label { font-size: 10px; font-weight: 700; color: #fff; background: var(--accent); padding: 2px 6px; border-radius: 4px; flex-shrink: 0; }
+  .pico-text { font-size: 12px; color: var(--muted); line-height: 1.4; }
+  .keywords-section { margin-bottom: 36px; }
+  .keywords { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+  .keyword { padding: 5px 14px; background: var(--accent-soft); border: 1px solid var(--line); border-radius: 20px; font-size: 12px; color: var(--accent); cursor: default; transition: background 0.2s; }
+  .keyword:hover { background: rgba(43,122,158,0.18); }
+  .topic-section { margin-bottom: 36px; }
+  .topic-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .topic-name { font-size: 13px; color: var(--muted); width: 110px; flex-shrink: 0; text-align: right; }
+  .topic-bar-bg { flex: 1; height: 8px; background: var(--line); border-radius: 4px; overflow: hidden; }
+  .topic-bar { height: 100%; background: linear-gradient(90deg, var(--accent), #4aa3c4); border-radius: 4px; transition: width 0.6s ease; }
+  .topic-count { font-size: 12px; color: var(--accent); width: 24px; }
+  .clinic-banner { margin-top: 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; animation: fadeUp 0.5s ease 0.4s both; }
+  .clinic-link { display: flex; align-items: center; gap: 14px; padding: 18px 24px; background: var(--card-bg); border: 1px solid var(--line); border-radius: 24px; text-decoration: none; color: var(--text); transition: all 0.2s; box-shadow: 0 8px 30px rgba(26,42,58,0.04); }
+  .clinic-link:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(26,42,58,0.08); }
+  .clinic-icon { font-size: 28px; flex-shrink: 0; }
+  .clinic-info { flex: 1; }
+  .clinic-name { font-size: 15px; font-weight: 700; color: var(--text); }
+  .clinic-desc { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .clinic-arrow { font-size: 18px; color: var(--accent); font-weight: 700; }
+  footer { margin-top: 32px; padding-top: 22px; border-top: 1px solid var(--line); font-size: 11.5px; color: var(--muted); display: flex; justify-content: space-between; animation: fadeUp 0.5s ease 0.5s both; }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--accent); }
+  @keyframes fadeDown { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 600px) { .container { padding: 36px 18px 60px; } .summary-card, .news-card { padding: 20px 18px; } .pico-grid { grid-template-columns: 1fr; } .clinic-banner { grid-template-columns: 1fr; } footer { flex-direction: column; gap: 6px; text-align: center; } .topic-name { width: 70px; font-size: 11px; } }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="logo">📚</div>
+    <div class="header-text">
+      <h1>Dyslexia Brain &middot; 閱讀障礙文獻日報</h1>
+      <div class="header-meta">
+        <span class="badge badge-date">📅 2026年10月26日</span>
+        <span class="badge badge-count">📊 5 篇文獻</span>
+        <span class="badge badge-source">Powered by PubMed + NVIDIA Nemotron</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="summary-card">
+    <h2>📋 今日文獻趨勢</h2>
+    <p class="summary-text">本日文獻聚焦於閱讀障礙標籤認同、中文學童的聽覺時間處理機制，以及國際共識對閱讀障礙定義的修正。三篇論文共同推動了從單純醫學模型轉向更整合身份認同、跨文化認知機制與實務定義的發展。</p>
+  </div>
+
+  <div class='section'><div class='section-title'><span class='section-icon'>⭐</span>今日精選 TOP Picks</div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#1</span>
+            <span class="emoji-icon">🏷️</span>
+            <span class="utility-mid">中实用性</span>
+          </div>
+          <h3>探討人士對不同與閱讀障礙相關話語的看法：一項混合方法調查</h3>
+          <p class="journal-source">Dyslexia (Chichester, England) &middot; 'I Am a Person Before My Label': Exploring People's Perceptions of Different Discourses Associated With Dyslexia.</p>
+          <p>探討成年閱讀障礙者對「閱讀障礙」與「神經多元」等標籤的看法，揭示標籤如何影響其身份認同與自我接受，臨床意義在於提醒專業人員在診斷與教學時須重視個體的主觀感受與標籤敏感度。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">認同自身為閱讀障礙的成年人（N=166，英國）</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">無（觀察性研究）</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">不同話語標籤（閱讀障礙 vs. 神經多元）</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">參與者對不同標籤的情感認同、接受度與身份認同評估</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">閱讀障礙</span><span class="tag">標籤認同</span><span class="tag">神經多元</span><span class="tag">身份認同</span><span class="tag">跨語言研究</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42928419/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#2</span>
+            <span class="emoji-icon">🔊</span>
+            <span class="utility-high">高实用性</span>
+          </div>
+          <h3>中華語系兒童聽覺時間處理、音韻覺識與快速命名對閱讀能力的中介效應研究</h3>
+          <p class="journal-source">Dyslexia (Chichester, England) &middot; Understanding Auditory Temporal Processing in Chinese Children With Dyslexia: The Mediating Effect of Phonological Awareness and Rapid Automatised Naming.</p>
+          <p>證明在中文閱讀障礙兒童中，聽覺時間處理對閱讀能力的影響部分透過音韻覺識與快速命名中介，提供了實證支撐，解釋了聽覺缺陷為何會轉化為閱讀困難的機制，對中文語境下的干預設計具有指導意義。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">中國大陸或台灣華語系閱讀障礙兒童（N=32例組，34對照組，二、三年級）</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">無（觀察性研究）</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">典型發展同齡兒童</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">聽覺時間辨識精確度、音韻覺識水平、快速命名速度與閱讀能力（字識、閱讀流暢度）的相關性與中介效應</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">音韻覺識</span><span class="tag">快速命名</span><span class="tag">聽覺時間處理</span><span class="tag">中文閱讀</span><span class="tag">發展性閱讀障礙</span><span class="tag">中介效應</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42663115/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div>
+        <div class="news-card featured">
+          <div class="card-header">
+            <span class="rank-badge">#3</span>
+            <span class="emoji-icon">📚</span>
+            <span class="utility-high">高实用性</span>
+          </div>
+          <h3>對閱讀障礙議題的德爾貝評估：回應 Metsala、Morsanyi 等人的評論</h3>
+          <p class="journal-source">Dyslexia (Chichester, England) &middot; Debating the Delphi View of Dyslexia: A Response to Metsala, Morsanyi and Colleagues.</p>
+          <p>回應國際對閱讀障礙共識視圖的評論，提出區分研究者、政策制定者與實務者三種定義的分類，旨在解決定義過於僵化導致在不同應用情境下的誤用與衝突問題。</p>
+          
+            <div class="pico-grid">
+              <div class="pico-item"><span class="pico-label">P</span><span class="pico-text">理論與臨床領域的相關利害關係人（研究者、政策制定者、實務者）</span></div>
+              <div class="pico-item"><span class="pico-label">I</span><span class="pico-text">無（論述回應）</span></div>
+              <div class="pico-item"><span class="pico-label">C</span><span class="pico-text">不同目的下的定義需求</span></div>
+              <div class="pico-item"><span class="pico-label">O</span><span class="pico-text">提出三級定義（研究用、政策用、實務用），提升定義在實際教學與政策制定中的適用性與精確度</span></div>
+            </div>
+          <div class="card-footer">
+            <span class="tag">閱讀障礙定義</span><span class="tag">結構化識字教學</span><span class="tag">政策制定</span><span class="tag">實務指南</span><span class="tag">理論討論</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42661142/" target="_blank">閱讀原文 →</a>
+          </div>
+        </div></div>
+
+  <div class='section'><div class='section-title'><span class='section-icon'>📚</span>其他值得關注的文獻</div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🏷️</span>
+            <span class="utility-mid utility-sm">中</span>
+          </div>
+          <h3>探討人士對不同與閱讀障礙相關話語的看法：一項混合方法調查</h3>
+          <p class="journal-source">Dyslexia (Chichester, England)</p>
+          <p>探討成年閱讀障礙者對「閱讀障礙」與「神經多元」等標籤的看法，揭示標籤如何影響其身份認同與自我接受。</p>
+          <div class="card-footer">
+            <span class="tag">閱讀障礙</span><span class="tag">標籤認同</span><span class="tag">神經多元</span><span class="tag">身份認同</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42928419/" target="_blank">PubMed →</a>
+          </div>
+        </div>
+        <div class="news-card">
+          <div class="card-header-row">
+            <span class="emoji-sm">🔊</span>
+            <span class="utility-high utility-sm">高</span>
+          </div>
+          <h3>中華語系兒童聽覺時間處理、音韻覺識與快速命名對閱讀能力的中介效應研究</h3>
+          <p class="journal-source">Dyslexia (Chichester, England)</p>
+          <p>研究中文閱讀障礙兒童的聽覺時間處理缺陷，並證明其透過音韻覺識與快速命名中介影響閱讀能力的機制。</p>
+          <div class="card-footer">
+            <span class="tag">音韻覺識</span><span class="tag">快速命名</span><span class="tag">聽覺時間處理</span><span class="tag">中文閱讀</span><span class="tag">發展性閱讀障礙</span>
+            <a href="https://pubmed.ncbi.nlm.nih.gov/42663115/" target="_blank">PubMed →</a>
+          </div>
+        </div></div>
+
+  <div class='topic-section section'><div class='section-title'><span class='section-icon'>📊</span>主題分佈</div>
+            <div class="topic-row">
+              <span class="topic-name">閱讀介入</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:50%"></div></div>
+              <span class="topic-count">1</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">音韻處理</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:100%"></div></div>
+              <span class="topic-count">2</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">標籤認同</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:50%"></div></div>
+              <span class="topic-count">1</span>
+            </div>
+            <div class="topic-row">
+              <span class="topic-name">定義討論</span>
+              <div class="topic-bar-bg"><div class="topic-bar" style="width:50%"></div></div>
+              <span class="topic-count">1</span>
+            </div></div>
+
+  <div class='keywords-section section'><div class='section-title'><span class='section-icon'>🏷️</span>關鍵字</div><div class='keywords'><span class="keyword">閱讀障礙</span><span class="keyword">音韻處理</span><span class="keyword">標籤認同</span><span class="keyword">中文閱讀</span><span class="keyword">聽覺時間處理</span></div></div>
+
+  <div class="clinic-banner">
+    <a href="https://www.leepsyclinic.com/" class="clinic-link" target="_blank">
+      <span class="clinic-icon">🏥</span>
+      <div class="clinic-info">
+        <span class="clinic-name">李政洋身心診所首頁</span>
+        <span class="clinic-desc">專業身心診皙評諮詢服務</span>
+      </div>
+      <span class="clinic-arrow">→</span>
+    </a>
+    <a href="https://blog.leepsyclinic.com/" class="clinic-link" target="_blank">
+      <span class="clinic-icon">📨</span>
+      <div class="clinic-info">
+        <span class="clinic-name">訂閱電子報</span>
+        <span class="clinic-desc">接收最新身心醫學資訊</span>
+      </div>
+      <span class="clinic-arrow">→</span>
+    </a>
+  </div>
+
+  <footer>
+    <span>資料來源：PubMed &middot; 分析模型：nvidia/nemotron-3.5-lightning-30b-a3b</span>
+    <span><a href="https://github.com/u8901006/dyslexia-brain">GitHub</a></span>
+  </footer>
+</div>
+</body>
+</html>
